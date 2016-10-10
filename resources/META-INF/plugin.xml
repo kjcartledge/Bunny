@@ -24,7 +24,8 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
+    <projectService serviceInterface="org.afabl.bunny.state.BunnyHistory"
+                    serviceImplementation="org.afabl.bunny.state.BunnyHistory"/>
   </extensions>
 
   <actions>
