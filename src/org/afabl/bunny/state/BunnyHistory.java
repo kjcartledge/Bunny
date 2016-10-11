@@ -19,8 +19,8 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
      * A set of actions that can be associated with an event (timestamp).
      */
     public enum Action {
-        PROJECT_OPEN, FILE_OPEN, FILE_ACTIVE, FILE_INACTIVE, FILE_CLOSED,
-        PROJECT_CLOSE
+        PROJECT_OPEN, FILE_OPEN, FILE_ACTIVE, USER_ACTIVE, USER_IDLE,
+        FILE_INACTIVE, FILE_CLOSED, PROJECT_CLOSE
     }
 
     private static final Logger logger = Logger.getInstance(BunnyHistory.class);
