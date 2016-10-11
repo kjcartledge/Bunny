@@ -19,13 +19,14 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
      * A set of actions that can be associated with an event (timestamp).
      */
     public enum Action {
-        PROJECT_OPEN, FILE_OPEN, FILE_ACTIVE, USER_ACTIVE, USER_IDLE,
-        FILE_INACTIVE, FILE_CLOSED, PROJECT_CLOSE
+        STUDY_STARTED, PROJECT_OPEN, FILE_OPEN, FILE_ACTIVE, USER_ACTIVE,
+        USER_IDLE, FILE_INACTIVE, FILE_CLOSED, PROJECT_CLOSE, STUDY_ENDED
     }
 
     private static final Logger logger = Logger.getInstance(BunnyHistory.class);
 
 
+    private boolean started;
     private String userId;
     private SortedMap<Long, SortedSet<Action>> events;
 
@@ -48,6 +49,20 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
      */
     public synchronized void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * Retrieves whether or not the user has started work.
+     */
+    public boolean getStarted() {
+        return started;
+    }
+
+    /**
+     * Sets whether or not the user has started work.
+     */
+    public void setStarted(boolean started) {
+        this.started = started;
     }
 
     /**

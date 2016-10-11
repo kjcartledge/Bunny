@@ -6,6 +6,8 @@ import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.util.Consumer;
+import org.afabl.bunny.dialog.InfoDialog;
 import org.afabl.bunny.state.BunnyHistory;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,6 +42,21 @@ public class BunnyEditorListener implements FileEditorManagerListener,
     public void fileOpened(@NotNull final FileEditorManager source,
                            @NotNull final VirtualFile file) {
         if (file.getPath().endsWith(BUNNY_FILENAME)) {
+            if (!history.getStarted()) {
+                new InfoDialog(project).showAndGetOk().doWhenDone(new
+                    Consumer<Boolean>() {
+                        @Override
+                        public void consume(Boolean result) {
+                            if (result) {
+                                history.setStarted(true);
+                                history.addEvent(
+                                        BunnyHistory.Action.STUDY_STARTED);
+                            } else {
+                                source.closeFile(file);
+                            }
+                        }
+                    });
+            }
             history.addEvent(BunnyHistory.Action.FILE_OPEN);
         }
     }
