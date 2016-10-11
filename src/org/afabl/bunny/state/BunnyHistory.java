@@ -4,15 +4,13 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 @State(name = "BunnyHistory", storages = {@Storage("BunnyHistory.xml")})
 public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
@@ -25,14 +23,16 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
         PROJECT_CLOSE
     }
 
+    private static final Logger logger = Logger.getInstance(BunnyHistory.class);
+
+
     private String userId;
     private SortedMap<Long, SortedSet<Action>> events;
 
     /**
-     * Creates a history and associates it with the given user.
+     * Creates an empty {@link BunnyHistory}.
      */
-    public BunnyHistory(String userId) {
-        this.userId = userId;
+    public BunnyHistory() {
         events = new TreeMap<Long, SortedSet<Action>>();
     }
 
@@ -46,7 +46,7 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
     /**
      * Sets the ID of the user associated with this history.
      */
-    public void setUserId(String userId) {
+    public synchronized void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -67,24 +67,47 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
     }
 
     /**
-     * Adds an event to the history. If an event with the same timestamp
-     * already exists, any new given actions are added to the existing event.
+     * Adds an event to the history with a timestamp of the current time. If an
+     * event with the same timestamp already exists, any new given action are
+     * added to the existing event.
      *
-     * @param timestamp the timestamp of the event
      * @param action the action to associate with the event
      * @param actions zero or more additional actions to associate with the
      *                event
      */
-    public void addEvent(long timestamp, @NotNull Action action,
+    public void addEvent(@NotNull Action action, @NotNull Action... actions) {
+        addEvent(System.currentTimeMillis(), action, actions);
+    }
+
+    /**
+     * Adds an event to the history. If an event with the same timestamp
+     * already exists, any new given actions are added to the existing event.
+     *
+     * @param timestamp the timestamp (in milliseconds since the UNIX epoch) of
+     *                  the event
+     * @param action the action to associate with the event
+     * @param actions zero or more additional actions to associate with the
+     *                event
+     */
+    public synchronized void addEvent(long timestamp, @NotNull Action action,
                          @NotNull Action... actions) {
         if (!events.containsKey(timestamp)) {
             events.put(timestamp, new TreeSet<Action>());
         }
         SortedSet<Action> actionSet = events.get(timestamp);
         actionSet.add(action);
+        Collections.addAll(actionSet, actions);
+
+        // Logging
+        StringBuilder builder = new StringBuilder();
+        builder.append(timestamp);
+        builder.append(" : ");
+        builder.append(action);
         for (Action elem : actions) {
-            actionSet.add(elem);
+            builder.append(", ");
+            builder.append(elem);
         }
+        logger.info(builder.toString());
     }
 
     @Nullable
