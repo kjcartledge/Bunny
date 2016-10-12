@@ -39,7 +39,6 @@ public class InfoDialog extends DialogWrapper {
 
     public interface Listener {
         void onOKAction();
-
         void onCancelAction();
     }
 }

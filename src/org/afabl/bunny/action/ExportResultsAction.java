@@ -8,7 +8,6 @@ import org.afabl.bunny.dialog.ExportResultsDialog;
 import org.afabl.bunny.state.BunnyHistory;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class ExportResultsAction extends AnAction {
@@ -48,7 +47,7 @@ public class ExportResultsAction extends AnAction {
         private String text;
         private File directory;
 
-        public ExportFileTask(String text, File directory) {
+        /* package */ ExportFileTask(String text, File directory) {
             this.text = text;
             this.directory = directory;
         }
@@ -57,7 +56,7 @@ public class ExportResultsAction extends AnAction {
         public void run() {
             try {
                 PrintWriter writer = new PrintWriter(new File(directory,
-                        "afabl_study_results.txt"));
+                        "afabl_results.txt"));
                 writer.print(text);
                 writer.close();
             } catch (Exception e) {

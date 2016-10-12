@@ -54,7 +54,6 @@ public class SubmitDialog extends DialogWrapper {
 
     public interface Listener {
         void onOKAction(String id);
-
         void onCancelAction();
     }
 }

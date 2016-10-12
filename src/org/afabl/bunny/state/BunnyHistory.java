@@ -162,10 +162,17 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
         builder.append("{\"user_id\":");
         builder.append(userId);
         builder.append(",\"events\":[");
+        boolean first = true;
         for (Map.Entry<Long, SortedSet<Action>> entry : events.entrySet()) {
+            if (first) {
+                first = false;
+            } else {
+                builder.append(",");
+            }
             builder.append("{\"time\":");
             builder.append(entry.getKey());
             builder.append(",\"actions\":[");
+            // Workaround for ClassCastException...
             List<Action> actions = new ArrayList<Action>(entry.getValue());
             Iterator<Action> iter = actions.iterator();
             builder.append("\"");
@@ -174,7 +181,7 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
                 builder.append("\",\"");
                 builder.append(iter.next());
             }
-            builder.append("\"]},");
+            builder.append("\"]}");
         }
         builder.append("]}");
         builder.trimToSize();

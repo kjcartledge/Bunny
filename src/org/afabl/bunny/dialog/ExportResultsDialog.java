@@ -87,7 +87,6 @@ public class ExportResultsDialog extends DialogWrapper {
 
     public interface Listener {
         void onOKAction(String id, File directory);
-
         void onCancelAction();
     }
 }
