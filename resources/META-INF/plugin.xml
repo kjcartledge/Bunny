@@ -29,9 +29,12 @@
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
+    <group id="BunnyToolsGroup" popup="true" text="Bunny"
+           icon="/icons/Bunny13.png"
+           class="org.afabl.bunny.action.BunnyActionGroup">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </group>
   </actions>
-
   <project-components>
     <component>
       <implementation-class>org.afabl.bunny.BunnyComponent</implementation-class>

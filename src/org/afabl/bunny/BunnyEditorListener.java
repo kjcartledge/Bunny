@@ -6,7 +6,6 @@ import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.util.Consumer;
 import org.afabl.bunny.dialog.InfoDialog;
 import org.afabl.bunny.state.BunnyHistory;
 import org.jetbrains.annotations.NotNull;
@@ -43,19 +42,20 @@ public class BunnyEditorListener implements FileEditorManagerListener,
                            @NotNull final VirtualFile file) {
         if (file.getPath().endsWith(BUNNY_FILENAME)) {
             if (!history.getStarted()) {
-                new InfoDialog(project).showAndGetOk().doWhenDone(new
-                    Consumer<Boolean>() {
-                        @Override
-                        public void consume(Boolean result) {
-                            if (result) {
-                                history.setStarted(true);
-                                history.addEvent(
-                                        BunnyHistory.Action.STUDY_STARTED);
-                            } else {
-                                source.closeFile(file);
-                            }
-                        }
-                    });
+                history.addEvent(BunnyHistory.Action.INFO_OPEN);
+                new InfoDialog(project, new InfoDialog.Listener() {
+                    @Override
+                    public void onOKAction() {
+                        history.setStarted(true);
+                        history.addEvent(BunnyHistory.Action.INFO_OK,
+                                         BunnyHistory.Action.STUDY_STARTED);
+                    }
+                    @Override
+                    public void onCancelAction() {
+                        source.closeFile(file);
+                        history.addEvent(BunnyHistory.Action.INFO_CANCEL);
+                    }
+                }).show();
             }
             history.addEvent(BunnyHistory.Action.FILE_OPEN);
         }

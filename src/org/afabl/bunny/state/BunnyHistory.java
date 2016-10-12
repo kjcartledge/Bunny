@@ -19,8 +19,10 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
      * A set of actions that can be associated with an event (timestamp).
      */
     public enum Action {
-        STUDY_STARTED, PROJECT_OPEN, FILE_OPEN, FILE_ACTIVE, USER_ACTIVE,
-        USER_IDLE, FILE_INACTIVE, FILE_CLOSED, PROJECT_CLOSE, STUDY_ENDED
+        INFO_OPEN, INFO_OK, INFO_CANCEL, STUDY_STARTED, PROJECT_OPEN, FILE_OPEN,
+        FILE_ACTIVE, USER_ACTIVE, USER_IDLE, FILE_INACTIVE, FILE_CLOSED,
+        PROJECT_CLOSE, SUBMIT_OPEN, SUBMIT_OK, SUBMIT_CANCEL, EXPORT_OPEN,
+        EXPORT_OK, EXPORT_CANCEL, STUDY_ENDED
     }
 
     private static final Logger logger = Logger.getInstance(BunnyHistory.class);
@@ -134,6 +136,49 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
     @Override
     public void loadState(BunnyHistory state) {
         XmlSerializerUtil.copyBean(state, this);
+    }
+
+    /**
+     * Exports this history as a (JSON) String.
+     *
+     * @throws IllegalStateException if userId is null or invalid
+     */
+    public String exportAsString() {
+        StringBuilder builder = new StringBuilder();
+        if (null == userId) {
+            throw new IllegalStateException("userId cannot be null when "
+                    + "exporting.");
+        }
+        // Validate userId
+        if (userId.length() != 8) {
+            throw new IllegalStateException("userId must be exactly 8 digits.");
+        }
+        for (char c : userId.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new IllegalStateException("userId must be exactly 8 "
+                        + "digits.");
+            }
+        }
+        builder.append("{\"user_id\":");
+        builder.append(userId);
+        builder.append(",\"events\":[");
+        for (Map.Entry<Long, SortedSet<Action>> entry : events.entrySet()) {
+            builder.append("{\"time\":");
+            builder.append(entry.getKey());
+            builder.append(",\"actions\":[");
+            List<Action> actions = new ArrayList<Action>(entry.getValue());
+            Iterator<Action> iter = actions.iterator();
+            builder.append("\"");
+            builder.append(iter.next());
+            while (iter.hasNext()) {
+                builder.append("\",\"");
+                builder.append(iter.next());
+            }
+            builder.append("\"]},");
+        }
+        builder.append("]}");
+        builder.trimToSize();
+        return builder.toString();
     }
 
     @Nullable

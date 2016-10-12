@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.afabl.bunny.dialog.ExportResultsDialog">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="66f47" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="30"/>
+            <preferred-size width="400" height="30"/>
+            <maximum-size width="400" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Export Results"/>
+        </properties>
+      </component>
+      <component id="4b358" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="10"/>
+            <preferred-size width="400" height="10"/>
+            <maximum-size width="400" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="51cd5" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="true">
+            <minimum-size width="400" height="150"/>
+            <preferred-size width="400" height="150"/>
+            <maximum-size width="400" height="150"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8b131" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="60" height="150"/>
+                <preferred-size width="60" height="150"/>
+                <maximum-size width="60" height="150"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Notice"/>
+            </properties>
+          </component>
+          <component id="8be0b" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="330" height="150"/>
+                <preferred-size width="330" height="150"/>
+                <maximum-size width="330" height="150"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;&lt;b&gt;Only complete this form if you are done!&lt;/b&gt;&lt;br/&gt;&lt;br/&gt; If possible, please use &lt;b&gt;Tools &gt; Bunny &gt; Submit&lt;/b&gt;. This form should only be used if internet access is not available and you would like to export your results for manual submission to &lt;tt&gt;bunny.afabl.org/submit&lt;/tt&gt; at a later time. This will create a file named &lt;tt&gt;afabl_results.txt&lt;/tt&gt; in the selected directory.&#10;&lt;/p&gt;&lt;/html&gt;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="acdbd" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="10"/>
+            <preferred-size width="400" height="10"/>
+            <maximum-size width="400" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="38ac1" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="true">
+            <minimum-size width="400" height="40"/>
+            <preferred-size width="400" height="40"/>
+            <maximum-size width="400" height="40"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="cf07" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="100" height="40"/>
+                <preferred-size width="100" height="40"/>
+                <maximum-size width="100" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Save Directory"/>
+            </properties>
+          </component>
+          <component id="f41ee" class="javax.swing.JButton" binding="selectDirectoryButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="290" height="30"/>
+                <preferred-size width="290" height="30"/>
+                <maximum-size width="290" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <text value="Select Directory"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="5f870" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="10"/>
+            <preferred-size width="400" height="10"/>
+            <maximum-size width="400" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="b9f3e" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="40"/>
+            <preferred-size width="400" height="40"/>
+            <maximum-size width="400" height="40"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a454" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="160" height="40"/>
+                <preferred-size width="160" height="40"/>
+                <maximum-size width="160" height="40"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="8-Digit Participant ID"/>
+            </properties>
+          </component>
+          <component id="50e75" class="javax.swing.JFormattedTextField" binding="participantIdField" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="230" height="30"/>
+                <preferred-size width="230" height="30"/>
+                <maximum-size width="230" height="30"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <component id="ca13a" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="400" height="10"/>
+            <preferred-size width="400" height="10"/>
+            <maximum-size width="400" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>

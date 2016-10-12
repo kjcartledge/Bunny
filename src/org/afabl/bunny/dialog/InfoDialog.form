@@ -1,209 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="org.afabl.bunny.dialog.InfoDialog">
-  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="10">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="10">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="504" height="464"/>
+      <xy x="20" y="20" width="504" height="534"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="ef5a7" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+      <component id="ff766" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="480" height="30"/>
+            <preferred-size width="480" height="30"/>
+            <maximum-size width="480" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <font size="18"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Welcome to the AFABL Programmer Study"/>
+        </properties>
+      </component>
+      <component id="5b79a" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="480" height="10"/>
+            <preferred-size width="480" height="10"/>
+            <maximum-size width="480" height="10"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+        </properties>
+      </component>
+      <grid id="77439" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="true">
-            <minimum-size width="480" height="440"/>
-            <preferred-size width="480" height="440"/>
-            <maximum-size width="480" height="440"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="480" height="110"/>
+            <preferred-size width="480" height="110"/>
+            <maximum-size width="480" height="110"/>
           </grid>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="ff766" class="javax.swing.JLabel">
+          <component id="5dff7" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="30"/>
-                <preferred-size width="480" height="30"/>
-                <maximum-size width="480" height="30"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="80" height="110"/>
+                <preferred-size width="80" height="110"/>
+                <maximum-size width="80" height="110"/>
               </grid>
             </constraints>
             <properties>
               <enabled value="true"/>
-              <font size="18"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Welcome to the AFABL Programmer Study"/>
+              <text value="About"/>
+              <verticalAlignment value="0"/>
             </properties>
           </component>
-          <component id="5b79a" class="javax.swing.JSeparator">
+          <component id="7d087" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="10"/>
-                <preferred-size width="480" height="10"/>
-                <maximum-size width="480" height="10"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="390" height="110"/>
+                <preferred-size width="390" height="110"/>
+                <maximum-size width="390" height="110"/>
               </grid>
             </constraints>
             <properties>
-              <enabled value="true"/>
+              <horizontalAlignment value="10"/>
+              <horizontalTextPosition value="11"/>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;The Bunny plugin is configured to track the amount of time spent working on the assignment. This is done by keeping track of when &lt;tt&gt;bunny.scala&lt;/tt&gt; is opened, closed, brought in and out of focus, etc. This plugin is &lt;i&gt;open source&lt;/i&gt;!&#10;&lt;/p&gt;&lt;/html&gt;"/>
             </properties>
-          </component>
-          <grid id="77439" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="110"/>
-                <preferred-size width="480" height="110"/>
-                <maximum-size width="480" height="110"/>
-              </grid>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="5dff7" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="110"/>
-                    <preferred-size width="80" height="110"/>
-                    <maximum-size width="80" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <enabled value="true"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="About"/>
-                  <verticalAlignment value="0"/>
-                </properties>
-              </component>
-              <component id="7d087" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="390" height="110"/>
-                    <preferred-size width="390" height="110"/>
-                    <maximum-size width="390" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="10"/>
-                  <horizontalTextPosition value="11"/>
-                  <text value="&lt;html&gt;The Bunny plugin is configured to track the amount of time &lt;br/&gt;spent working on the assignment. This is done by keeping&#10;&lt;br/&gt;track of when &lt;tt&gt;bunny.scala&lt;/tt&gt; is opened, closed, brought in&#10;&lt;br/&gt;and out of focus, etc. This plugin is &lt;i&gt;open source&lt;/i&gt;!&lt;/html&gt;"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-          <component id="b6b10" class="javax.swing.JSeparator">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="10"/>
-                <preferred-size width="480" height="10"/>
-                <maximum-size width="480" height="10"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <grid id="bc348" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="110"/>
-                <preferred-size width="480" height="110"/>
-                <maximum-size width="480" height="110"/>
-              </grid>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="9afd8" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="110"/>
-                    <preferred-size width="80" height="110"/>
-                    <maximum-size width="80" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="Working"/>
-                </properties>
-              </component>
-              <component id="5fe9" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="390" height="110"/>
-                    <preferred-size width="390" height="110"/>
-                    <maximum-size width="390" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value="&lt;html&gt;While working on the assignment, please keep bunny.scala&#10;&lt;br/&gt;as the active tab so your time can accurately recorded. In&#10;&lt;br/&gt;the event you must stop work, simply close the editor tab&#10;&lt;br/&gt;containing &lt;tt&gt;bunny.scala&lt;/tt&gt; or close the project entirely. Your &lt;br/&gt;progress will be saved automatically.&lt;/html&gt;&#10;"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-          <component id="a967f" class="javax.swing.JSeparator">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="10"/>
-                <preferred-size width="480" height="10"/>
-                <maximum-size width="480" height="10"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <grid id="cc5d5" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="110"/>
-                <preferred-size width="480" height="110"/>
-                <maximum-size width="480" height="110"/>
-              </grid>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="b18bd" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
-                    <minimum-size width="80" height="110"/>
-                    <preferred-size width="80" height="110"/>
-                    <maximum-size width="80" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="Submitting"/>
-                </properties>
-              </component>
-              <component id="b2120" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                    <minimum-size width="390" height="110"/>
-                    <preferred-size width="390" height="110"/>
-                    <maximum-size width="390" height="110"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value="&lt;html&gt;When you have completed the assignment, please close&#10;&lt;br/&gt;the editor tab containing &lt;tt&gt;bunny.scala&lt;/tt&gt; and navigate to&#10;&lt;br/&gt;&lt;b&gt;Tools &gt; Bunny &gt; Submit&lt;/b&gt; to submit your results. This&#10;&lt;br/&gt;step will require that you have your Participant ID provided&#10;&lt;br/&gt;to you when you signed up for this study.&#10;&#10;"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-          <component id="25f07" class="javax.swing.JSeparator">
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="480" height="10"/>
-                <preferred-size width="480" height="10"/>
-                <maximum-size width="480" height="10"/>
-              </grid>
-            </constraints>
-            <properties/>
           </component>
         </children>
       </grid>
+      <component id="b6b10" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="480" height="10"/>
+            <preferred-size width="480" height="10"/>
+            <maximum-size width="480" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="bc348" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="480" height="110"/>
+            <preferred-size width="480" height="110"/>
+            <maximum-size width="480" height="110"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="9afd8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="80" height="110"/>
+                <preferred-size width="80" height="110"/>
+                <maximum-size width="80" height="110"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Working"/>
+            </properties>
+          </component>
+          <component id="5fe9" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="390" height="110"/>
+                <preferred-size width="390" height="110"/>
+                <maximum-size width="390" height="110"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;While working on the assignment, please keep &lt;tt&gt;bunny.scala&lt;/tt&gt; as the active tab so your time can accurately recorded. In the event you must stop work, simply close the editor tab containing &lt;tt&gt;bunny.scala&lt;/tt&gt; or close the project entirely. Your progress will be saved automatically.&#10;&lt;/p&gt;&lt;/html&gt;&#10;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="a967f" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="480" height="10"/>
+            <preferred-size width="480" height="10"/>
+            <maximum-size width="480" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="cc5d5" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="true">
+            <minimum-size width="480" height="110"/>
+            <preferred-size width="480" height="110"/>
+            <maximum-size width="480" height="110"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b18bd" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false">
+                <minimum-size width="80" height="110"/>
+                <preferred-size width="80" height="110"/>
+                <maximum-size width="80" height="110"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Submitting"/>
+            </properties>
+          </component>
+          <component id="b2120" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="390" height="110"/>
+                <preferred-size width="390" height="110"/>
+                <maximum-size width="390" height="110"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;When you have completed the assignment, please close the editor tab containing &lt;tt&gt;bunny.scala&lt;/tt&gt; and navigate to &lt;br/&gt;&lt;b&gt;Tools &gt; Bunny &gt; Submit&lt;/b&gt; to submit your results. This step will require that you have your Participant ID provided to you when you signed up for this study.&#10;&lt;/p&gt;&lt;/html&gt;&#10;&#10;"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="25f07" class="javax.swing.JSeparator">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="480" height="10"/>
+            <preferred-size width="480" height="10"/>
+            <maximum-size width="480" height="10"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
     </children>
   </grid>
 </form>
