@@ -11,13 +11,22 @@ import javax.swing.*;
 public class SubmitDialog extends DialogWrapper {
     private JPanel contentPane;
     private JFormattedTextField participantIdField;
+    private JProgressBar progressBar;
+    private JSeparator progressBarSeparator;
     private Listener listener;
 
-    public SubmitDialog(@Nullable Project project, @NotNull Listener listener) {
+    public SubmitDialog(@Nullable Project project,
+                        @NotNull Listener listener,
+                        @Nullable String participantId) {
         super(project);
         this.listener = listener;
         participantIdField.setFormatterFactory(
                 new ParticipantIdFormatterFactory());
+        if (null != participantId) {
+            participantIdField.setValue(participantId);
+        }
+        progressBar.setVisible(false);
+        progressBarSeparator.setVisible(false);
         init();
         this.setResizable(false);
         setTitle("Submit");
@@ -48,12 +57,32 @@ public class SubmitDialog extends DialogWrapper {
 
     @Override
     protected void doOKAction() {
-        super.doOKAction();
-        listener.onOKAction((String) participantIdField.getValue());
+        progressBar.setVisible(true);
+        progressBarSeparator.setVisible(true);
+        repaint();
+        listener.onOKAction((String) participantIdField.getValue(),
+                new Callback() {
+            @Override
+            public void onSuccess() {
+                SubmitDialog.super.doOKAction();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                progressBar.setVisible(false);
+                progressBarSeparator.setVisible(false);
+                setErrorText(message);
+            }
+        });
     }
 
     public interface Listener {
-        void onOKAction(String id);
+        void onOKAction(String id, Callback callback);
         void onCancelAction();
+    }
+
+    public interface Callback {
+        void onSuccess();
+        void onFailure(String message);
     }
 }

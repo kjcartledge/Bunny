@@ -16,10 +16,13 @@ public class ExportResultsDialog extends DialogWrapper {
     private JButton selectDirectoryButton;
     private File selectedDirectory;
     private JFormattedTextField participantIdField;
+    private JProgressBar progressBar;
+    private JSeparator progressBarSeparator;
     private Listener listener;
 
     public ExportResultsDialog(@Nullable Project project,
-                               @NotNull Listener listener) {
+                               @NotNull Listener listener,
+                               @Nullable String participantId) {
         super(project);
         this.listener = listener;
         participantIdField.setFormatterFactory(
@@ -42,6 +45,11 @@ public class ExportResultsDialog extends DialogWrapper {
                 }
             }
         });
+        if (null != participantId) {
+            participantIdField.setValue(participantId);
+        }
+        progressBar.setVisible(false);
+        progressBarSeparator.setVisible(false);
         init();
         this.setResizable(false);
         setTitle("Export Results");
@@ -74,9 +82,23 @@ public class ExportResultsDialog extends DialogWrapper {
 
     @Override
     protected void doOKAction() {
-        super.doOKAction();
+        progressBar.setVisible(true);
+        progressBarSeparator.setVisible(true);
+        repaint();
         listener.onOKAction((String) participantIdField.getValue(),
-                            selectedDirectory);
+                selectedDirectory, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        ExportResultsDialog.super.doOKAction();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        progressBar.setVisible(false);
+                        progressBarSeparator.setVisible(false);
+                        setErrorText(message);
+                    }
+                });
     }
 
     @Override
@@ -86,7 +108,12 @@ public class ExportResultsDialog extends DialogWrapper {
     }
 
     public interface Listener {
-        void onOKAction(String id, File directory);
+        void onOKAction(String id, File directory, Callback callback);
         void onCancelAction();
+    }
+
+    public interface Callback {
+        void onSuccess();
+        void onFailure(String message);
     }
 }

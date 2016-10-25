@@ -21,8 +21,9 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
     public enum Action {
         INFO_OPEN, INFO_OK, INFO_CANCEL, STUDY_STARTED, PROJECT_OPEN, FILE_OPEN,
         FILE_ACTIVE, USER_ACTIVE, USER_IDLE, FILE_INACTIVE, FILE_CLOSED,
-        PROJECT_CLOSE, SUBMIT_OPEN, SUBMIT_OK, SUBMIT_CANCEL, EXPORT_OPEN,
-        EXPORT_OK, EXPORT_CANCEL, STUDY_ENDED
+        PROJECT_CLOSE, SUBMIT_OPEN, SUBMIT_OK, SUBMIT_SUCCESS, SUBMIT_FAIL,
+        SUBMIT_CANCEL, EXPORT_OPEN, EXPORT_OK, EXPORT_SUCCESS, EXPORT_FAIL,
+        EXPORT_CANCEL, STUDY_ENDED
     }
 
     private static final Logger logger = Logger.getInstance(BunnyHistory.class);
@@ -93,7 +94,7 @@ public class BunnyHistory implements PersistentStateComponent<BunnyHistory> {
      *                event
      */
     public void addEvent(@NotNull Action action, @NotNull Action... actions) {
-        addEvent(System.currentTimeMillis(), action, actions);
+        addEvent(System.currentTimeMillis() / 1000, action, actions);
     }
 
     /**

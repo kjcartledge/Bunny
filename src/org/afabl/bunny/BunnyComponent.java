@@ -4,8 +4,10 @@ import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.messages.MessageBus;
 import com.intellij.util.messages.MessageBusConnection;
 import org.afabl.bunny.action.BunnyActionGroup;
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.awt.*;
 
-public class BunnyComponent implements ProjectComponent {
+public class BunnyComponent implements ProjectComponent, Study {
 
     public static final String BUNNY_FILENAME = "bunny.scala";
     public static final String BUNNY_PROJECT_NAME = "afabl_study";
@@ -45,12 +47,12 @@ public class BunnyComponent implements ProjectComponent {
         if (isBunnyProject()) {
             history = BunnyHistory.getInstance(project);
             timer = new Timer(IDLE_DELAY, null);
-            listener = new BunnyEditorListener(project, history, timer);
+            listener = new BunnyEditorListener(project, history, timer, this);
             actionManager = ActionManager.getInstance();
             actionGroup = (BunnyActionGroup) actionManager
                     .getAction(BUNNY_ACTION_GROUP_NAME);
-            submitAction = new SubmitAction(history);
-            exportAction = new ExportResultsAction(history);
+            submitAction = new SubmitAction(history, this);
+            exportAction = new ExportResultsAction(history, this);
         }
     }
 
@@ -64,12 +66,9 @@ public class BunnyComponent implements ProjectComponent {
             Toolkit.getDefaultToolkit().addAWTEventListener(listener,
                     AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK);
             timer.addActionListener(listener);
-            actionManager.registerAction(BUNNY_SUBMIT_ACTION_NAME,
-                    submitAction);
-            actionGroup.add(submitAction);
-            actionManager.registerAction(BUNNY_EXPORT_ACTION_NAME,
-                    exportAction);
-            actionGroup.add(exportAction);
+            if (history.getStarted()) {
+                start();
+            }
         }
     }
 
@@ -112,5 +111,27 @@ public class BunnyComponent implements ProjectComponent {
 
     private boolean isBunnyProject() {
         return projectName.equals(BUNNY_PROJECT_NAME);
+    }
+
+    @Override
+    public void start() {
+        actionManager.registerAction(BUNNY_SUBMIT_ACTION_NAME,
+                submitAction);
+        actionGroup.add(submitAction);
+        actionManager.registerAction(BUNNY_EXPORT_ACTION_NAME,
+                exportAction);
+        actionGroup.add(exportAction);
+    }
+
+    @Override
+    public void end() {
+        FileEditorManager manager = FileEditorManager.getInstance(project);
+        VirtualFile[] files = manager.getOpenFiles();
+        for (VirtualFile file : files) {
+            if (file.getPath().endsWith(BUNNY_FILENAME)) {
+                manager.closeFile(file);
+                return;
+            }
+        }
     }
 }

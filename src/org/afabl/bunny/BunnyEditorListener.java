@@ -27,13 +27,15 @@ public class BunnyEditorListener implements FileEditorManagerListener,
     private final Project project;
     private final BunnyHistory history;
     private final Timer timer;
+    private final Study study;
     private boolean idle;
 
     /* package */ BunnyEditorListener(Project project, BunnyHistory history,
-                                      Timer timer) {
+                                      Timer timer, Study study) {
         this.project = project;
         this.history = history;
         this.timer = timer;
+        this.study = study;
         this.idle = true; // Will avoid going idle until after user input.
     }
 
@@ -49,6 +51,7 @@ public class BunnyEditorListener implements FileEditorManagerListener,
                         history.setStarted(true);
                         history.addEvent(BunnyHistory.Action.INFO_OK,
                                          BunnyHistory.Action.STUDY_STARTED);
+                        study.start();
                     }
                     @Override
                     public void onCancelAction() {
