@@ -95,6 +95,22 @@ This guide covers the setup required to participate in the AFABL Programmer Stud
 - [Cleaning up](#quick_cleanup)
 
 ### <a name="quick_setup">Setup</a>
+
+#### Requirements
+Ensure your system meets the following requirements:
+- 1 GB RAM minimum, 2 GB RAM recommended
+- 300 MB hard disk space + at least 1 GB for caches
+- 1024x768 minimum screen resolution
+- Mac OS X 10.8+ OR Microsoft Windows 10/8/7/Vista/2003/XP (incl.64-bit) OR Linux with GNOME or KDE desktop
+- Java JDK version 1.8.0+
+- Internet Access
+
+#### Setting Up Intellij IDEA Community Edition
+0. If you already have Intellij IDEA Community Edition installed, check that it is build version 162.2032 or higher, if so, skip to step 3. If not, update to the latest version or goto step 1.
+1. Download the Intellij IDEA Community Edition from the [offical website](https://www.jetbrains.com/idea/download/#)
+2. Install Intellij IDEA by following the install instructions for your operating system provided on the download page linked above.
+3. Install the Scala Language plugin 
+
 ### <a name="quick_working">Working on the project</a>
 ### <a name="quick_submit">Submitting the results</a>
 ### <a name="quick_cleanup">Cleaning up</a>
