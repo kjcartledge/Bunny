@@ -23,7 +23,26 @@ This guide covers the setup required to participate in the AFABL Programmer Stud
 - [Cleaning up after submitting results](#windows_cleanup)
 
 ### <a name="windows_requirements">System Requirements</a>
+
+#### Hardware Requirements
+- 1 GB RAM minimum, 2 GB RAM recommended
+- 300 MB hard disk space + at least 1 GB for caches
+- 1024x768 minimum screen resolution
+
+#### System Requirements
+- Java Development Kit 1.8+
+
 ### <a name="windows_java_check">Checking for the Java 8 JDK</a>
+
+#### Using cmd
+
+1) Open the command prompt
+2) Run the command `javac -version` and `java -version`
+3) Verify both show "`java-1.8.0_xxx`" (where xxx is a two or three digit number)
+3a) If the you see `'javac' is not recognized as an internal or external command,
+operable program or batch file.` or `'java' is not recognized as an internal or external command,
+operable program or batch file.` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#windows_intellij_check).
+
 ### <a name="windows_java_install">Installing the Java 8 JDK</a>
 ### <a name="windows_intellij_check">Checking for Intellij IDEA Community Edition</a>
 ### <a name="windows_intellij_install">Installing Intellij IDEA Community Edition</a>
@@ -49,7 +68,24 @@ This guide covers the setup required to participate in the AFABL Programmer Stud
 - [Cleaning up after submitting results](#mac_cleanup)
 
 ### <a name="mac_requirements">System Requirements</a>
+
+#### Hardware Requirements
+- 1 GB RAM minimum, 2 GB RAM recommended
+- 300 MB hard disk space + at least 1 GB for caches
+- 1024x768 minimum screen resolution
+
+#### System Requirements
+- Java Development Kit 1.8+
+
 ### <a name="mac_java_check">Checking for the Java 8 JDK</a>
+
+#### Using Terminal
+
+1) Open Terminal
+2) Run the command `javac -version` and `java -version`
+3) Verify both show "`java-1.8.0_xxx`" (where xxx is a two or three digit number)
+3a) If the you see `-bash: javac: command not found` or `-bash: java: command not found` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#mac_intellij_check).
+
 ### <a name="mac_java_install">Installing the Java 8 JDK</a>
 ### <a name="mac_intellij_check">Checking for Intellij IDEA Community Edition</a>
 ### <a name="mac_intellij_install">Installing Intellij IDEA Community Edition</a>
@@ -75,7 +111,24 @@ This guide covers the setup required to participate in the AFABL Programmer Stud
 - [Cleaning up after submitting results](#linux_cleanup)
 
 ### <a name="linux_requirements">System Requirements</a>
+
+#### Hardware Requirements
+- 1 GB RAM minimum, 2 GB RAM recommended
+- 300 MB hard disk space + at least 1 GB for caches
+- 1024x768 minimum screen resolution
+
+#### System Requirements
+- Java Development Kit 1.8+
+
 ### <a name="linux_java_check">Checking for the Java 8 JDK</a>
+
+#### Using the command line
+
+1) Open the command line
+2) Run the command `javac -version` and `java -version`
+3) Verify both show "`java-1.8.0_xxx`" (where xxx is a two or three digit number)
+3a) If the you see `javac: command not found` or `java: command not found` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#linux_intellij_check).
+
 ### <a name="linux_java_install">Installing the Java 8 JDK</a>
 ### <a name="linux_intellij_check">Checking for Intellij IDEA Community Edition</a>
 ### <a name="linux_intellij_install">Installing Intellij IDEA Community Edition</a>
