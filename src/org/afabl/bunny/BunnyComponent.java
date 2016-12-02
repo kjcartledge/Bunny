@@ -40,10 +40,12 @@ public class BunnyComponent implements ProjectComponent, Study {
     private BunnyActionGroup actionGroup;
     private SubmitAction submitAction;
     private ExportResultsAction exportAction;
+    private boolean initCompleted;
 
     public BunnyComponent(Project project) {
         this.project = project;
         projectName = project.getName();
+        initCompleted = false;
         if (isBunnyProject()) {
             history = BunnyHistory.getInstance(project);
             timer = new Timer(IDLE_DELAY, null);
@@ -69,24 +71,27 @@ public class BunnyComponent implements ProjectComponent, Study {
             if (history.getStarted()) {
                 start();
             }
+            initCompleted = true;
         }
     }
 
     @Override
     public void disposeComponent() {
-        connection.disconnect();
-        timer.removeActionListener(listener);
-        timer.stop();
-        actionGroup.remove(submitAction);
-        actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
-        actionGroup.remove(exportAction);
-        actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
-        submitAction = null;
-        actionGroup = null;
-        actionManager = null;
-        timer = null;
-        history = null;
-        listener = null;
+        if (initCompleted) {
+            connection.disconnect();
+            timer.removeActionListener(listener);
+            timer.stop();
+            actionGroup.remove(submitAction);
+            actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
+            actionGroup.remove(exportAction);
+            actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
+            submitAction = null;
+            actionGroup = null;
+            actionManager = null;
+            timer = null;
+            history = null;
+            listener = null;
+        }
     }
 
     @Override
