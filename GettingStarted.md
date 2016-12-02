@@ -44,8 +44,25 @@ operable program or batch file.` or `'java' is not recognized as an internal or 
 operable program or batch file.` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#windows_intellij_check).
 
 ### <a name="windows_java_install">Installing the Java 8 JDK</a>
+
+[Click here for intallation instructions](https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html#CHDEBCCJ).
+
 ### <a name="windows_intellij_check">Checking for Intellij IDEA Community Edition</a>
+
+1) Check if Intellij IDEA Community Edition is installed. 
+1a) If not, proceed to [Installing Intellij IDEA Community Edition](#windows_intellij_install).
+2) Otherwise, open Intellij IDEA Community Edition and find the version number by clicking <b>Help</b>, then clicking <b>About</b>. 
+3) Find the build number and ensure it is at least "`Build #IC-162.2032.8`". 
+3a) If not, please click <b>Help</b>, then <b>Check for Updates</b> and upate to the latest version of Intellij IDEA.
+4) Otherwise, skip to [Installing the Scala Language plugin for Intellij IDEA](#windows_scala_install).
+
 ### <a name="windows_intellij_install">Installing Intellij IDEA Community Edition</a>
+
+1) Download Intellij IDEA Community Edition from the [JetBrains Website](https://www.jetbrains.com/idea/download/#section=windows).
+2) Run the `ideaIC or ideaIU-*.exe` file that starts the Installation Wizard.
+3) Follow all steps suggested by the wizard. 
+4) Launch Intellij IDEA for the first time to configure it. If prompted with the option to install the Scala plugin, please do so.
+
 ### <a name="windows_scala_install">Installing the Scala Language plugin for Intellij IDEA</a>
 ### <a name="windows_bunny_install">Installing the Bunny plugin for Intellij IDEA</a>
 ### <a name="windows_project_setup">Setting up the AFABL Study project in Intellij IDEA</a>
@@ -75,6 +92,7 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 - 1024x768 minimum screen resolution
 
 #### System Requirements
+- Only 64-bit OS X is supported.
 - Java Development Kit 1.8+
 
 ### <a name="mac_java_check">Checking for the Java 8 JDK</a>
@@ -87,8 +105,26 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 3a) If the you see `-bash: javac: command not found` or `-bash: java: command not found` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#mac_intellij_check).
 
 ### <a name="mac_java_install">Installing the Java 8 JDK</a>
+
+[Click here for intallation instructions](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html#CHDBADCG).
+
 ### <a name="mac_intellij_check">Checking for Intellij IDEA Community Edition</a>
+
+1) Check if Intellij IDEA Community Edition is installed. 
+1a) If not, proceed to [Installing Intellij IDEA Community Edition](#mac_intellij_install).
+2) Otherwise, open Intellij IDEA Community Edition and find the version number by clicking <b>Intellij IDEA</b>, then clicking <b>About Intellij IDEA</b>. 
+3) Find the build number and ensure it is at least "`Build #IC-162.2032.8`". 
+3a) If not, please click <b>Intellij IDEA</b>, then <b>Check for Updates...</b> and upate to the latest version of Intellij IDEA.
+4) Otherwise, skip to [Installing the Scala Language plugin for Intellij IDEA](#mac_scala_install).
+
 ### <a name="mac_intellij_install">Installing Intellij IDEA Community Edition</a>
+
+
+1) Download Intellij IDEA Community Edition from the [JetBrains Website](https://www.jetbrains.com/idea/download/#section=macos).
+2) Double-click the downloaded `ideaIC or ideaIU-*.dmg` OS X Disk Image file to mount it.
+3) Copy IntelliJ IDEA to your <b>Applications</b> folder.
+4) Launch Intellij IDEA for the first time to configure it. If prompted with the option to install the Scala plugin, please do so.
+
 ### <a name="mac_scala_install">Installing the Scala Language plugin for Intellij IDEA</a>
 ### <a name="mac_bunny_install">Installing the Bunny plugin for Intellij IDEA</a>
 ### <a name="mac_project_setup">Setting up the AFABL Study project in Intellij IDEA</a>
@@ -118,6 +154,8 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 - 1024x768 minimum screen resolution
 
 #### System Requirements
+- OS Linux 64 bit
+- KDE, GNOME or Unity DE desktop
 - Java Development Kit 1.8+
 
 ### <a name="linux_java_check">Checking for the Java 8 JDK</a>
@@ -130,8 +168,27 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 3a) If the you see `javac: command not found` or `java: command not found` proceed to the next section, otherwise skip to [Checking for Intellij IDEA Community Edition](#linux_intellij_check).
 
 ### <a name="linux_java_install">Installing the Java 8 JDK</a>
+
+[Click here for intallation instructions](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html#BJFGGEFG).
+
 ### <a name="linux_intellij_check">Checking for Intellij IDEA Community Edition</a>
+
+1) Check if Intellij IDEA Community Edition is installed. 
+1a) If not, proceed to [Installing Intellij IDEA Community Edition](#linux_intellij_install).
+2) Otherwise, open Intellij IDEA Community Edition and find the version number by clicking <b>Help</b>, then clicking <b>About</b>. 
+3) Find the build number and ensure it is at least "`Build #IC-162.2032.8`". 
+3a) If not, please click <b>Help</b>, then <b>Check for Updates</b> and upate to the latest version of Intellij IDEA.
+4) Otherwise, skip to [Installing the Scala Language plugin for Intellij IDEA](#linux_scala_install).
+
 ### <a name="linux_intellij_install">Installing Intellij IDEA Community Edition</a>
+
+1) Download the `<ideaIC or ideaIU>-*.tar.gz` file from the [JetBrains Website](https://www.jetbrains.com/idea/download/#section=linux).
+2) Unpack the `<ideaIC or ideaIU>-*.tar.gz` file to a different folder, if your current "Download" folder doesn't support file execution:
+`tar xfz <ideaIC or ideaIU>-*.tar.gz <new_archive_folder>`. The recommended install location according to the filesystem hierarchy standard (FHS) is `/opt`. For example, it's possible to enter the following command: `sudo tar xf <ideaIC or ideaIU>-*.tar.gz -C /opt/`.
+3) Switch to the bin directory:
+cd `<new archive folder>/<ideaIC or ideaIU>-*/bin`. For example, `cd opt/<ideaIC or ideaIU>-*/bin`.
+4) Run `idea.sh` from the `bin` subdirectory.
+
 ### <a name="linux_scala_install">Installing the Scala Language plugin for Intellij IDEA</a>
 ### <a name="linux_bunny_install">Installing the Bunny plugin for Intellij IDEA</a>
 ### <a name="linux_project_setup">Setting up the AFABL Study project in Intellij IDEA</a>
