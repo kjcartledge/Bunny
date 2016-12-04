@@ -10,133 +10,195 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.messages.MessageBus;
 import com.intellij.util.messages.MessageBusConnection;
+import java.awt.AWTEvent;
+import java.awt.Toolkit;
+import javax.swing.Timer;
+import org.afabl.bunny.action.ActionListener;
 import org.afabl.bunny.action.BunnyActionGroup;
 import org.afabl.bunny.action.ExportResultsAction;
 import org.afabl.bunny.action.SubmitAction;
-import org.afabl.bunny.state.BunnyHistory;
+import org.afabl.bunny.state.Action;
+import org.afabl.bunny.state.History;
+import org.afabl.bunny.util.Function;
+import org.afabl.bunny.util.Supplier;
+import org.afabl.bunny.util.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import static org.afabl.bunny.action.BunnyActionGroup.BUNNY_ACTION_GROUP_NAME;
+import static org.afabl.bunny.action.ExportResultsAction.BUNNY_EXPORT_ACTION_NAME;
+import static org.afabl.bunny.action.SubmitAction.BUNNY_SUBMIT_ACTION_NAME;
 
-import javax.swing.*;
-import java.awt.*;
+public class BunnyComponent implements ProjectComponent {
 
-public class BunnyComponent implements ProjectComponent, Study {
+  public static final int IDLE_DELAY = 30000; // 30 Seconds
+  public static final String BUNNY_COMPONENT_NAME = "Bunny.BunnyComponent";
 
-    public static final String BUNNY_FILENAME = "bunny.scala";
-    public static final String BUNNY_PROJECT_NAME = "afabl_study";
-    public static final int IDLE_DELAY = 30000; // 30 Seconds
-    public static final String BUNNY_ACTION_GROUP_NAME = "BunnyToolsGroup";
-    public static final String BUNNY_SUBMIT_ACTION_NAME = "BunnySubmit";
-    public static final String BUNNY_EXPORT_ACTION_NAME = "BunnyExport";
+  private static final Logger logger = Logger.getInstance(BunnyComponent.class);
 
-    private static final Logger logger = Logger.getInstance(BunnyComponent.class);
+  private final Project project;
+  private final Utils utils;
+  private BunnyEditorListener listener;
+  private History history;
+  private MessageBusConnection connection;
+  private Timer timer;
+  private boolean initCompleted;
+  private final Study study;
 
-    private final Project project;
-    private final String projectName;
-    private BunnyEditorListener listener;
-    private BunnyHistory history;
-    private MessageBusConnection connection;
-    private Timer timer;
-    private ActionManager actionManager;
-    private BunnyActionGroup actionGroup;
-    private SubmitAction submitAction;
-    private ExportResultsAction exportAction;
-    private boolean initCompleted;
-
-    public BunnyComponent(Project project) {
-        this.project = project;
-        projectName = project.getName();
-        initCompleted = false;
-        if (isBunnyProject()) {
-            history = BunnyHistory.getInstance(project);
-            timer = new Timer(IDLE_DELAY, null);
-            listener = new BunnyEditorListener(project, history, timer, this);
-            actionManager = ActionManager.getInstance();
-            actionGroup = (BunnyActionGroup) actionManager
-                    .getAction(BUNNY_ACTION_GROUP_NAME);
-            submitAction = new SubmitAction(history, this);
-            exportAction = new ExportResultsAction(history, this);
-        }
-    }
-
-    @Override
-    public void initComponent() {
-        if (isBunnyProject()) {
-            MessageBus bus = ApplicationManager.getApplication().getMessageBus();
-            connection = bus.connect();
-            connection.subscribe(FileEditorManagerListener.FILE_EDITOR_MANAGER,
-                    listener);
-            Toolkit.getDefaultToolkit().addAWTEventListener(listener,
-                    AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK);
-            timer.addActionListener(listener);
-            if (history.getStarted()) {
-                start();
+  public BunnyComponent(Project project) {
+    this.project = project;
+    this.utils = new Utils();
+    initCompleted = false;
+    if (utils.isTrackedProject(project)) {
+      history = History.getInstance(project);
+      timer = new Timer(IDLE_DELAY, null);
+      study = new Study(new Function() {
+        @Override
+        public void call() {
+          ActionManager actionManager = ActionManager.getInstance();
+          BunnyActionGroup actionGroup = (BunnyActionGroup) actionManager
+                  .getAction(BUNNY_ACTION_GROUP_NAME);
+          Supplier<String> jsonSupplier = new Supplier<String>() {
+            @Override
+            public String get() {
+              return study.getJson();
             }
-            initCompleted = true;
+          };
+          Supplier<String> idSupplier = new Supplier<String>() {
+            @Override
+            public String get() {
+              return study.getUserId();
+            }
+          };
+          SubmitAction submitAction = new SubmitAction(jsonSupplier, idSupplier,
+                  new SubmitActionListener());
+          ExportResultsAction exportAction = new ExportResultsAction(jsonSupplier, idSupplier,
+                  new SubmitActionListener());
+          actionManager.registerAction(BUNNY_SUBMIT_ACTION_NAME, submitAction);
+          actionGroup.add(submitAction);
+          actionManager.registerAction(BUNNY_EXPORT_ACTION_NAME, exportAction);
+          actionGroup.add(exportAction);
         }
-    }
-
-    @Override
-    public void disposeComponent() {
-        if (initCompleted) {
-            connection.disconnect();
-            timer.removeActionListener(listener);
-            timer.stop();
-            actionGroup.remove(submitAction);
-            actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
-            actionGroup.remove(exportAction);
-            actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
-            submitAction = null;
-            actionGroup = null;
-            actionManager = null;
-            timer = null;
-            history = null;
-            listener = null;
+      }, new Function() {
+        @Override
+        public void call() {
+          FileEditorManager manager = FileEditorManager.getInstance(BunnyComponent.this.project);
+          for (VirtualFile file : manager.getOpenFiles()) {
+            if (utils.isTrackedFile(file)) {
+              manager.closeFile(file);
+            }
+          }
         }
+      }, history);
+      listener = new BunnyEditorListener(project, study, timer);
+    } else {
+      study = null;
     }
+  }
 
-    @Override
-    public void projectOpened() {
-        if (isBunnyProject()) {
-            history.addEvent(BunnyHistory.Action.PROJECT_OPEN);
-        }
+  @Override
+  public void initComponent() {
+    if (utils.isTrackedProject(project)) {
+      MessageBus bus = ApplicationManager.getApplication().getMessageBus();
+      connection = bus.connect();
+      connection.subscribe(FileEditorManagerListener.FILE_EDITOR_MANAGER, listener);
+      Toolkit.getDefaultToolkit().addAWTEventListener(listener,
+              AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK);
+      timer.addActionListener(listener);
+      initCompleted = true;
     }
+  }
 
-    @Override
-    public void projectClosed() {
-        if (isBunnyProject()) {
-            history.addEvent(BunnyHistory.Action.PROJECT_CLOSE);
-        }
+  @Override
+  public void disposeComponent() {
+    if (initCompleted) {
+      connection.disconnect();
+      timer.removeActionListener(listener);
+      timer.stop();
+      ActionManager actionManager = ActionManager.getInstance();
+      BunnyActionGroup actionGroup = (BunnyActionGroup) actionManager
+              .getAction(BUNNY_ACTION_GROUP_NAME);
+      actionGroup.removeAll();
+      actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
+      actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
+      timer = null;
+      history = null;
+      listener = null;
     }
+  }
 
-    @Override
-    @NotNull
-    public String getComponentName() {
-        return "Bunny.BunnyComponent";
+  @Override
+  public void projectOpened() {
+    if (utils.isTrackedProject(project)) {
+      study.event(new Action(Action.Type.PROJECT_OPEN, project.getName()));
     }
+  }
 
-    private boolean isBunnyProject() {
-        return projectName.equals(BUNNY_PROJECT_NAME);
+  @Override
+  public void projectClosed() {
+    if (utils.isTrackedProject(project)) {
+      study.event(new Action(Action.Type.PROJECT_CLOSE, project.getName()));
     }
+  }
+
+  @Override
+  @NotNull
+  public String getComponentName() {
+    return BUNNY_COMPONENT_NAME;
+  }
+
+  private class SubmitActionListener implements ActionListener {
 
     @Override
     public void start() {
-        actionManager.registerAction(BUNNY_SUBMIT_ACTION_NAME,
-                submitAction);
-        actionGroup.add(submitAction);
-        actionManager.registerAction(BUNNY_EXPORT_ACTION_NAME,
-                exportAction);
-        actionGroup.add(exportAction);
+      study.event(new Action(Action.Type.SUBMIT_OPEN));
     }
 
     @Override
-    public void end() {
-        FileEditorManager manager = FileEditorManager.getInstance(project);
-        VirtualFile[] files = manager.getOpenFiles();
-        for (VirtualFile file : files) {
-            if (file.getPath().endsWith(BUNNY_FILENAME)) {
-                manager.closeFile(file);
-                return;
-            }
-        }
+    public void id(@NotNull String id) {
+      study.setUserId(id);
     }
+
+    @Override
+    public void failure(@Nullable Object data) {
+      study.event(new Action(Action.Type.SUBMIT_FAIL, data));
+    }
+
+    @Override
+    public void success() {
+      study.event(new Action(Action.Type.SUBMIT_SUCCESS));
+    }
+
+    @Override
+    public void abort() {
+      study.event(new Action(Action.Type.SUBMIT_CANCEL));
+    }
+  }
+
+  private class ExportResultsActionListener implements ActionListener {
+
+    @Override
+    public void start() {
+      study.event(new Action(Action.Type.EXPORT_OPEN));
+    }
+
+    @Override
+    public void id(@NotNull String id) {
+      study.setUserId(id);
+    }
+
+    @Override
+    public void failure(@Nullable Object data) {
+      study.event(new Action(Action.Type.EXPORT_FAIL, data));
+    }
+
+    @Override
+    public void success() {
+      study.event(new Action(Action.Type.EXPORT_SUCCESS));
+    }
+
+    @Override
+    public void abort() {
+      study.event(new Action(Action.Type.EXPORT_CANCEL));
+    }
+  }
 }

@@ -18,8 +18,8 @@
   <idea-version since-build="162.2032.8"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <projectService serviceInterface="org.afabl.bunny.state.BunnyHistory"
-                    serviceImplementation="org.afabl.bunny.state.BunnyHistory"/>
+    <projectService serviceInterface="org.afabl.bunny.state.History"
+                    serviceImplementation="org.afabl.bunny.state.History"/>
   </extensions>
 
   <actions>

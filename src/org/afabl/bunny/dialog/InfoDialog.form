@@ -75,7 +75,7 @@
             <properties>
               <horizontalAlignment value="10"/>
               <horizontalTextPosition value="11"/>
-              <text value="&lt;html&gt;&lt;p&gt;&#10;The Bunny plugin is configured to track the amount of time spent working on the assignment. This is done by keeping track of when &lt;tt&gt;bunny.scala&lt;/tt&gt; is opened, closed, brought in and out of focus, etc. This plugin is &lt;i&gt;open source&lt;/i&gt;!&#10;&lt;/p&gt;&lt;/html&gt;"/>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;The Bunny plugin is configured to track the amount of time spent working on the assignment. This is done by keeping track of when any of the four &lt;tt&gt;.scala&lt;/tt&gt; files are opened, closed, brought in and out of focus, etc. Also, this plugin is &lt;i&gt;open source&lt;/i&gt;!&#10;&lt;/p&gt;&lt;/html&gt;"/>
             </properties>
           </component>
         </children>
@@ -125,7 +125,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="&lt;html&gt;&lt;p&gt;&#10;While working on the assignment, please keep &lt;tt&gt;bunny.scala&lt;/tt&gt; as the active tab so your time can accurately recorded. In the event you must stop work, simply close the editor tab containing &lt;tt&gt;bunny.scala&lt;/tt&gt; or close the project entirely. Your progress will be saved automatically.&#10;&lt;/p&gt;&lt;/html&gt;&#10;"/>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;While working on the assignment, please keep the scala file your are working on as the active tab so your time can accurately recorded. In the event you must stop work, simply close all editor tabs or close the project entirely. Your progress will be saved automatically.&#10;&lt;/p&gt;&lt;/html&gt;&#10;"/>
             </properties>
           </component>
         </children>
@@ -175,7 +175,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="&lt;html&gt;&lt;p&gt;&#10;When you have completed the assignment, please close the editor tab containing &lt;tt&gt;bunny.scala&lt;/tt&gt; and navigate to &lt;br/&gt;&lt;b&gt;Tools &gt; Bunny &gt; Submit&lt;/b&gt; to submit your results. This step will require that you have your Participant ID provided to you when you signed up for this study.&#10;&lt;/p&gt;&lt;/html&gt;&#10;&#10;"/>
+              <text value="&lt;html&gt;&lt;p&gt;&#10;When you have completed the assignment, please close all editor tabs containing &lt;tt&gt;.scala&lt;/tt&gt; files and navigate to &lt;br/&gt;&lt;b&gt;Tools &gt; Bunny &gt; Submit&lt;/b&gt; to submit your results. This step will require your Participant ID provided to you when you signed up for this study (though it is likely prefilled for you).&#10;&lt;/p&gt;&lt;/html&gt;&#10;&#10;"/>
             </properties>
           </component>
         </children>
