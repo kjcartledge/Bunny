@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
+import java.net.URI;
 import org.afabl.bunny.dialog.SubmitDialog;
 import org.afabl.bunny.util.Supplier;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +25,10 @@ public class SubmitAction extends AnAction {
   public static final String BUNNY_SUBMIT_MENU_STRING = "Submit";
 
   private static Logger logger = Logger.getInstance(SubmitAction.class);
-  private static final String SUBMIT_URL = "http://localhost:5000/results/";
+  private static final String SUBMIT_URL = "http://bunny.afabl.org/results/";
+  private static final String SURVEY_URL = "https://docs.google.com/forms/d/e/1FAIpQLScaYWjobvIGr2b"
+      + "HTZMgAEV5GzbFftzCkNKs8UlnD3a2v-eFhw/viewform?entry.2071527133&entry.1804496195&entry.20861"
+      + "94466=";
 
   private final Supplier<String> jsonSupplier;
   private final Supplier<String> idSupplier;
@@ -89,6 +93,7 @@ public class SubmitAction extends AnAction {
           listener.failure("Bad response: " + conn.getResponseMessage());
           callback.onFailure("Submission failed with response: " + conn.getResponseMessage());
         } else {
+          java.awt.Desktop.getDesktop().browse(URI.create(SURVEY_URL + userId));
           listener.success();
           callback.onSuccess();
         }
