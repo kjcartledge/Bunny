@@ -3,10 +3,52 @@
 ## Overview
 This guide covers the setup required to participate in the AFABL Programmer Study. To begin, simply click the operating system you will be using for the study from the list below or click the "Quick Start" link for a quick instructional guide that is sutible for all operating systems and assumes some experience with installing programs and plugins in Intellij IDEA.
 
+- [Quick Start](#quick)
 - [Microsoft Windows 7/8/8.1/10](#windows)
 - [Mac OS X 10.8+](#mac)
 - [Linux (Running GNOME or KDE)](#linux)
-- [Quick Start](#quick)
+
+## <a name="quick">Quick Start</a>
+
+### Contents
+- [Setup](#quick_setup)
+- [Working on the project](#quick_working)
+- [Submitting the results](#quick_submit)
+- [Cleaning up](#quick_cleanup)
+
+### <a name="quick_setup">Setup</a>
+
+#### Requirements
+Ensure your system meets the following requirements:
+- 1 GB RAM minimum, 2 GB RAM recommended
+- 300 MB hard disk space + at least 1 GB for caches
+- 1024x768 minimum screen resolution
+- Mac OS X 10.8+ OR Microsoft Windows 10/8/7/Vista/2003/XP (incl.64-bit) OR Linux with GNOME or KDE desktop
+- Java JDK version 1.8.0+
+- Internet Access
+
+#### Setting Up Intellij IDEA Community Edition
+1. If you already have Intellij IDEA Community Edition installed, check that it is build version 162.2032 or higher, if so, skip to step 5. If not, update to the latest version or goto step 3.
+3. Download the Intellij IDEA Community Edition from the [offical website](https://www.jetbrains.com/idea/download/#)
+4. Install Intellij IDEA by following the install instructions for your operating system provided on the download page linked above.
+5. Install the Scala Language plugin.
+6. Download the Bunny plugin from [here](https://github.com/kjcartledge/Bunny/releases/download/1.0/Bunny.jar) and install it in Intellij IDEA.
+
+### <a name="quick_working">Working on the project</a>
+
+1. Open the afabl_study project.
+2. Double-click the first task `.scala` file indicated in the instructions to open it.
+3. Read the Welcome prompt and click okay to start.
+4. Complete the assignment per the provided instructions.
+
+### <a name="quick_submit">Submitting the results</a>
+
+1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results. Note that this will open a post-study survey which should be completed.
+2. If this fails, you can use the <b>Export Results</b> option instead of <b>Submit</b> to generate a text file that can be submited at a later time.
+
+### <a name="quick_cleanup">Cleaning up</a>
+
+After your results have been submitted, you can remove any and all software installed for this study.
 
 ## <a name="windows">Microsoft Windows 7/8/8.1/10</a>
 
@@ -77,7 +119,7 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 
 ### <a name="windows_bunny_install">Installing the Bunny plugin for Intellij IDEA</a>
 
-1. Download the Bunny plugin from [it's repoistory](https://github.com/kjcartledge/Bunny/releases/download/v1.0/Bunny.jar).
+1. Download the Bunny plugin from [it's repoistory](https://github.com/kjcartledge/Bunny/releases/download/v1.0/jar).
 2. Open Intellij IDEA Community Edition.
 3. Open <b>Settings</b> by clicking <b>File</b> followed by <b>Settings</b>.
 4. In the left-hand pane, select Plugins.
@@ -98,14 +140,13 @@ operable program or batch file.` proceed to the next section, otherwise skip to 
 ### <a name="windows_project_working">Working on the AFABL Study project</a>
 
 1. Open the afabl_study project.
-2. Double-click the `bunny.scala` file in the `src` directory.
+2. Double-click the first task `.scala` file indicated in the instructions to open it.
 3. Read the Welcome prompt and click okay to start.
-4. Complete the assignment in `bunny.scala` per the provided instructions.
-5. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results.
+4. Complete the assignment per the provided instructions.
 
 ### <a name="windows_project_finish">Finishing the AFABL Study project</a>
 
-1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results.
+1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results. Note, that this will open a post-study survey to complete.
 2. If this fails, you can use the <b>Export Results</b> option instead of <b>Submit</b> to generate a text file that can be submited at a later time.
 
 ### <a name="windows_cleanup">Cleaning up after submitting results</a>
@@ -202,13 +243,13 @@ After your results have been submitted, you can remove any and all software inst
 ### <a name="mac_project_working">Working on the AFABL Study project</a>
 
 1. Open the afabl_study project.
-2. Double-click the `bunny.scala` file in the `src` directory.
+2. Double-click the first task `.scala` file indicated in the instructions to open it.
 3. Read the Welcome prompt and click okay to start.
-4. Complete the assignment in `bunny.scala` per the provided instructions.
+4. Complete the assignment per the provided instructions.
 
 ### <a name="mac_project_finish">Finishing the AFABL Study project</a>
 
-1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results.
+1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results. Note, that this will open a post-study survey to complete.
 2. If this fails, you can use the <b>Export Results</b> option instead of <b>Submit</b> to generate a text file that can be submited at a later time.
 
 ### <a name="mac_cleanup">Cleaning up after submitting results</a>
@@ -307,56 +348,15 @@ cd `<new archive folder>/<ideaIC or ideaIU>-*/bin`. For example, `cd opt/<ideaIC
 ### <a name="linux_project_working">Working on the AFABL Study project</a>
 
 1. Open the afabl_study project.
-2. Double-click the `bunny.scala` file in the `src` directory.
+2. Double-click the first task `.scala` file indicated in the instructions to open it.
 3. Read the Welcome prompt and click okay to start.
-4. Complete the assignment in `bunny.scala` per the provided instructions.
+4. Complete the assignment per the provided instructions.
 
 ### <a name="linux_project_finish">Finishing the AFABL Study project</a>
 
-1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results.
+1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results. Note, that this will open a post-study survey to complete.
 2. If this fails, you can use the <b>Export Results</b> option instead of <b>Submit</b> to generate a text file that can be submited at a later time.
 
 ### <a name="linux_cleanup">Cleaning up after submitting results</a>
-
-After your results have been submitted, you can remove any and all software installed for this study.
-
-## <a name="quick">Quick Start</a>
-
-### Contents
-- [Setup](#quick_setup)
-- [Working on the project](#quick_working)
-- [Submitting the results](#quick_submit)
-- [Cleaning up](#quick_cleanup)
-
-### <a name="quick_setup">Setup</a>
-
-#### Requirements
-Ensure your system meets the following requirements:
-- 1 GB RAM minimum, 2 GB RAM recommended
-- 300 MB hard disk space + at least 1 GB for caches
-- 1024x768 minimum screen resolution
-- Mac OS X 10.8+ OR Microsoft Windows 10/8/7/Vista/2003/XP (incl.64-bit) OR Linux with GNOME or KDE desktop
-- Java JDK version 1.8.0+
-- Internet Access
-
-#### Setting Up Intellij IDEA Community Edition
-0. If you already have Intellij IDEA Community Edition installed, check that it is build version 162.2032 or higher, if so, skip to step 3. If not, update to the latest version or goto step 1.
-1. Download the Intellij IDEA Community Edition from the [offical website](https://www.jetbrains.com/idea/download/#)
-2. Install Intellij IDEA by following the install instructions for your operating system provided on the download page linked above.
-3. Install the Scala Language plugin 
-
-### <a name="quick_working">Working on the project</a>
-
-1. Open the afabl_study project.
-2. Double-click the bunny.scala file in the `src` directory.
-3. Read the Welcome prompt and click okay to start.
-4. Complete the assignment in `bunny.scala` per the provided instructions.
-
-### <a name="quick_submit">Submitting the results</a>
-
-1. When you are finished click <b>Tools</b> followed by <b>Bunny</b> then <b>Submit</b> to complete the study and submit your results.
-2. If this fails, you can use the <b>Export Results</b> option instead of <b>Submit</b> to generate a text file that can be submited at a later time.
-
-### <a name="quick_cleanup">Cleaning up</a>
 
 After your results have been submitted, you can remove any and all software installed for this study.
