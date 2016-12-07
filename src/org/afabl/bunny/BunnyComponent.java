@@ -44,13 +44,12 @@ public class BunnyComponent implements ProjectComponent {
   private boolean initCompleted;
   private final Study study;
 
-  public BunnyComponent(Project project) {
+  public BunnyComponent(final Project project) {
     this.project = project;
     this.utils = new Utils();
     initCompleted = false;
     if (utils.isTrackedProject(project)) {
       history = History.getInstance(project);
-      timer = new Timer(IDLE_DELAY, null);
       study = new Study(new Function() {
         @Override
         public void call() {
@@ -88,8 +87,13 @@ public class BunnyComponent implements ProjectComponent {
             }
           }
         }
+      }, new Supplier<String>() {
+        @Override
+        public String get() {
+          return utils.getFilesJson(project);
+        }
       }, history);
-      listener = new BunnyEditorListener(project, study, timer);
+      listener = new BunnyEditorListener(project, study, IDLE_DELAY);
     } else {
       study = null;
     }
@@ -103,7 +107,6 @@ public class BunnyComponent implements ProjectComponent {
       connection.subscribe(FileEditorManagerListener.FILE_EDITOR_MANAGER, listener);
       Toolkit.getDefaultToolkit().addAWTEventListener(listener,
               AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK);
-      timer.addActionListener(listener);
       initCompleted = true;
     }
   }
@@ -112,15 +115,12 @@ public class BunnyComponent implements ProjectComponent {
   public void disposeComponent() {
     if (initCompleted) {
       connection.disconnect();
-      timer.removeActionListener(listener);
-      timer.stop();
       ActionManager actionManager = ActionManager.getInstance();
       BunnyActionGroup actionGroup = (BunnyActionGroup) actionManager
               .getAction(BUNNY_ACTION_GROUP_NAME);
       actionGroup.removeAll();
       actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
       actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
-      timer = null;
       history = null;
       listener = null;
     }

@@ -1,9 +1,12 @@
 package org.afabl.bunny;
 
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
+import com.intellij.openapi.fileEditor.TextEditor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import java.awt.AWTEvent;
@@ -16,23 +19,40 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BunnyEditorListener implements FileEditorManagerListener, AWTEventListener,
-        ActionListener {
+public class BunnyEditorListener implements FileEditorManagerListener, AWTEventListener {
 
   private static final Logger logger = Logger.getInstance(BunnyEditorListener.class);
 
   private final Project project;
   private final Utils utils;
-  private final Timer timer;
+  private final Timer idleTimer;
+  private final Timer statusTimer;
   private final Study study;
   private boolean idle;
 
-  /* package */ BunnyEditorListener(Project project, Study study, Timer timer) {
+  /* package */ BunnyEditorListener(final Project project, Study study, final int idleDelay) {
     this.project = project;
     this.utils = new Utils();
-    this.timer = timer;
     this.study = study;
+    this.idleTimer = new Timer(idleDelay, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        idle(true);
+      }
+    });
+    this.statusTimer = new Timer(idleDelay, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        VirtualFile active = utils.getActiveFile(project);
+        if (utils.isTrackedFile(active)) {
+          BunnyEditorListener.this.study.event(new Action(idle ? Action.Type.USER_IDLE :
+                  Action.Type.USER_ACTIVE, active.getName()));
+        }
+      }
+    });
     this.idle = true; // Will avoid going idle until after user input.
+    idleTimer.start();
+    statusTimer.start();
   }
 
   @Override
@@ -82,22 +102,17 @@ public class BunnyEditorListener implements FileEditorManagerListener, AWTEventL
     idle(false);
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    idle(true);
-  }
-
   private synchronized void idle(boolean idle) {
     if (!this.idle) {
       if (idle) {
-        timer.stop();
+        idleTimer.stop();
         this.idle = true;
         study.event(new Action(Action.Type.USER_IDLE));
       } else {
-        timer.restart();
+        idleTimer.restart();
       }
     } else if (!idle) {
-      timer.start();
+      idleTimer.start();
       this.idle = false;
       study.event(new Action(Action.Type.USER_ACTIVE));
     }

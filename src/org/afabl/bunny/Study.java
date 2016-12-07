@@ -4,7 +4,10 @@ import com.intellij.openapi.diagnostic.Logger;
 import org.afabl.bunny.state.Action;
 import org.afabl.bunny.state.History;
 import org.afabl.bunny.util.Function;
+import org.afabl.bunny.util.Supplier;
+import org.afabl.bunny.util.Utils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class Study {
 
@@ -13,6 +16,8 @@ public class Study {
 
   private final Function start;
   private final Function end;
+  private final Utils utils;
+  private final Supplier<String> fileContentSupplier;
   private History history;
 
   /**
@@ -21,9 +26,12 @@ public class Study {
    *
    * @param start A
    */
-  public Study(Function start, Function end, History history) {
+  public Study(@Nullable Function start, @Nullable Function end,
+               @NotNull Supplier<String> fileContentSupplier, @NotNull History history) {
     this.start = null == start ? Function.NOOP : start;
     this.end = null == end ? Function.NOOP : end;
+    this.fileContentSupplier = fileContentSupplier;
+    this.utils = new Utils();
     this.history = history;
     if (history.getStarted()) {
       start.call();
@@ -69,7 +77,10 @@ public class Study {
    * @return a JSON representation of this study
    */
   public String getJson() {
-    return history.getJson();
+    StringBuilder builder = new StringBuilder();
+    builder.append("{\"history\":").append(history.getJson()).append(",")
+           .append(fileContentSupplier.get()).append("}").trimToSize();
+    return builder.toString();
   }
 
   /**
