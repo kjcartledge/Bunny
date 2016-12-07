@@ -37,9 +37,9 @@ Ensure your system meets the following requirements:
 ### <a name="quick_working">Working on the project</a>
 
 1. Open the afabl_study project.
-2. Double-click one of the task `.scala` files in the `src` directory.
+2. Double-click the first task `.scala` file indicated in the instructions to open it.
 3. Read the Welcome prompt and click okay to start.
-4. Complete the assignment in `bunny.scala` per the provided instructions.
+4. Complete the assignment per the provided instructions.
 
 ### <a name="quick_submit">Submitting the results</a>
 
