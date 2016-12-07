@@ -158,9 +158,9 @@ public class History implements PersistentStateComponent<History> {
                 + "digits.");
       }
     }
-    builder.append("{\"user_id\":");
+    builder.append("{\"user_id\":\"");
     builder.append(userId);
-    builder.append(",\"events\":[");
+    builder.append("\",\"events\":[");
     boolean first = true;
     for (Map.Entry<Long, Set<String>> entry : events.entrySet()) {
       if (first) {
