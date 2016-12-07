@@ -3,10 +3,10 @@
 ## Overview
 This guide covers the setup required to participate in the AFABL Programmer Study. To begin, simply click the operating system you will be using for the study from the list below or click the "Quick Start" link for a quick instructional guide that is sutible for all operating systems and assumes some experience with installing programs and plugins in Intellij IDEA.
 
+- [Quick Start](#quick)
 - [Microsoft Windows 7/8/8.1/10](#windows)
 - [Mac OS X 10.8+](#mac)
 - [Linux (Running GNOME or KDE)](#linux)
-- [Quick Start](#quick)
 
 ## <a name="quick">Quick Start</a>
 
