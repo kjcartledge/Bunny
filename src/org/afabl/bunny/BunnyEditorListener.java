@@ -97,6 +97,11 @@ public class BunnyEditorListener implements FileEditorManagerListener, AWTEventL
     }
   }
 
+  public void stopTimers() {
+    idleTimer.stop();
+    statusTimer.stop();
+  }
+
   @Override
   public void eventDispatched(AWTEvent event) {
     idle(false);

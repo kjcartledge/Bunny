@@ -122,6 +122,7 @@ public class BunnyComponent implements ProjectComponent {
       actionManager.unregisterAction(BUNNY_SUBMIT_ACTION_NAME);
       actionManager.unregisterAction(BUNNY_EXPORT_ACTION_NAME);
       history = null;
+      listener.stopTimers();
       listener = null;
     }
   }

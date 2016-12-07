@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class Utils {
   public static final String BUNNY_PROJECT_NAME = "afabl_study";
-  public static final String BUNNY_PATH = "src/main/scala/org/afabl/study/";
+  public static final String BUNNY_PATH = "/src/main/scala/org/afabl/study/";
   public static final String[] BUNNY_FILENAMES = new String[]{
           "AfablTask1.scala", "AfablTask2.scala",
           "scalaTask1.scala", "scalaTask2.scala"};
@@ -42,7 +42,11 @@ public final class Utils {
   }
 
   public VirtualFile getActiveFile(@NotNull Project project) {
-    Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+    FileEditorManager manager = FileEditorManager.getInstance(project);
+    if (null == manager) {
+      return null;
+    }
+    Editor editor = manager.getSelectedTextEditor();
     if (null != editor) {
       return FileDocumentManager.getInstance().getFile(editor.getDocument());
     } else {
@@ -54,7 +58,7 @@ public final class Utils {
     StringBuilder builder = new StringBuilder();
     builder.append("\"files\":[");
     for (int i = 0; i < BUNNY_FILENAMES.length; i++) {
-      String path = "file:///" + project.getBasePath() + BUNNY_PATH + BUNNY_FILENAMES[i];
+      String path = "file://" + project.getBasePath() + BUNNY_PATH + BUNNY_FILENAMES[i];
       VirtualFile file = VirtualFileManager.getInstance().findFileByUrl(path);
       if (null != file) {
         try {
